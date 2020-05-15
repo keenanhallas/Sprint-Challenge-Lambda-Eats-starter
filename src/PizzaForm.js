@@ -40,7 +40,7 @@ const PizzaForm = () => {
                 <select
                     id="size"
                     name="size"
-                    value={formState.name}
+                    value={formState.size}
                     onChange={handleChange}
                 >
                     <option value="">--Please select a size--</option>
@@ -51,6 +51,69 @@ const PizzaForm = () => {
                 </select>
                 {/*{errorState.name ? <ErrorMessage>{errorState.name}</ErrorMessage> : null}*/}
             </label>
+            <br />
+            <label htmlFor="sauce">
+                Sauce:
+                <select
+                    id="sauce"
+                    name="sauce"
+                    value={formState.sauce}
+                    onChange={handleChange}
+                >
+                    <option value="">--Please select a sauce--</option>
+                    <option value="Red">Red</option>
+                    <option value="White">White</option>
+                </select>
+                {/*{errorState.name ? <ErrorMessage>{errorState.name}</ErrorMessage> : null}*/}
+            </label>
+            <br />
+            <label htmlFor="pepperoni">
+                Pepperoni:
+                <input
+                    type="checkbox"
+                    id="pepperoni"
+                    name="pepperoni"
+                    checked={formState.pepperoni}
+                    onChange={handleChange}
+                    /> 
+            </label>
+            {/*{errorState.name ? <ErrorMessage>{errorState.name}</ErrorMessage> : null}*/}
+            <br />
+            <label htmlFor="sausage">
+                Sausage:
+                <input
+                    type="checkbox"
+                    id="sausage"
+                    name="sausage"
+                    checked={formState.sausage}
+                    onChange={handleChange}
+                    /> 
+            </label>
+            {/*{errorState.name ? <ErrorMessage>{errorState.name}</ErrorMessage> : null}*/}
+            <br />
+            <label htmlFor="mushroom">
+                Mushroom:
+                <input
+                    type="checkbox"
+                    id="mushroom"
+                    name="mushroom"
+                    checked={formState.mushroom}
+                    onChange={handleChange}
+                    /> 
+            </label>
+            {/*{errorState.name ? <ErrorMessage>{errorState.name}</ErrorMessage> : null}*/}
+            <br />
+            <label htmlFor="pineapple">
+                Pineapple:
+                <input
+                    type="checkbox"
+                    id="pineapple"
+                    name="pineapple"
+                    checked={formState.pineapple}
+                    onChange={handleChange}
+                    /> 
+            </label>
+            {/*{errorState.name ? <ErrorMessage>{errorState.name}</ErrorMessage> : null}*/}
             <br />
             <button>Order now!</button>
         </form>
