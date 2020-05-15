@@ -3,8 +3,8 @@ import React from "react";
 const App = () => {
   return (
     <>
-      <h1>Lambda Eats</h1>
-      <p>You can remove this code and create your own header</p>
+      <h1>Keenan's Terrible Pizza Service</h1>
+      <h2>Wow, it actually works??</h2>
     </>
   );
 };
