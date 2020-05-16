@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import * as yup from "yup";
+import styled from "styled-components";
 
 const PizzaForm = () => {
     const [formState, setFormState] = useState({
@@ -12,6 +14,14 @@ const PizzaForm = () => {
         instructions: ""
     });
 
+    const formSchema = yup.object().shape({
+        name: yup.string().min(2, "Your name must be at least 2 characters.").required("You must enter your name.")
+    });
+
+    const [errorState, setErrorState] = useState({
+        name: ""
+    });
+
     const handleChange = (event) => {
         event.persist();
         const value = event.target.type === "checkbox" ? event.target.checked : event.target.value;
@@ -20,12 +30,35 @@ const PizzaForm = () => {
             [event.target.name]: value
         });
         console.log(formState);
-        //validate(event, value);
+        validate(event, value);
+    }
+
+    const validate = (event, value) => {
+        yup.reach(formSchema, event.target.name)
+            .validate(value)
+            .then(valid => {
+                setErrorState({
+                    ...errorState,
+                    [event.target.name]: ""
+                });
+            })
+            .catch(err => {
+                setErrorState({
+                    ...errorState,
+                    [event.target.name]: err.errors[0]
+                });
+            });
     }
 
     const handleSubmit = () => {
         console.log("Submission logged!");
     }
+
+    const ErrorMessage = styled.span`
+        color: red;
+        font-size: .75rem;
+        margin-left: 5px;
+    `;
 
     return (
         <form onSubmit={handleSubmit}>
@@ -39,7 +72,7 @@ const PizzaForm = () => {
                     value={formState.name}
                     onChange={handleChange}
                 />
-                {/*{errorState.name ? <ErrorMessage>{errorState.name}</ErrorMessage> : null}*/}
+                {errorState.name ? <ErrorMessage>{errorState.name}</ErrorMessage> : null}
             </label>
             <br />
             <label htmlFor="size">
