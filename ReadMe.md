@@ -60,7 +60,7 @@ Implement the following tests in Cypress:
 
 - [x] test that you can add text to the box
 - [x] test that you can select multiple toppings
-- [ ] test that you can submit the form
+- [x] test that you can submit the form
 
 You may use the following wireframe (also in a folder above) as guidance as you design your site but it is not required that you do so.
 

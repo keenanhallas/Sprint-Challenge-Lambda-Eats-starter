@@ -205,7 +205,7 @@ const PizzaForm = () => {
                 {/*{errorState.name ? <ErrorMessage>{errorState.name}</ErrorMessage> : null}*/}
             </label>
             <br />
-            <button>Order now!</button>
+            <button data-cy="order-now">Order now!</button>
         </form>
     );
 };
