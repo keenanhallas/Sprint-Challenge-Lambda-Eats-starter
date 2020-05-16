@@ -19,8 +19,8 @@ const PizzaForm = () => {
 
     const formSchema = yup.object().shape({
         name: yup.string().min(2, "Your name must be at least 2 characters.").required("You must enter your name."),
-        size: yup.string(),
-        sauce: yup.string(),
+        size: yup.string().oneOf(["S", "M", "L", "XL"], "You must select a size"),
+        sauce: yup.string().oneOf(["Red", "White"], "You must select a sauce"),
         pepperoni: yup.boolean(),
         sausage: yup.boolean(),
         mushroom: yup.boolean(),
@@ -127,7 +127,7 @@ const PizzaForm = () => {
                     <option value="L">Large</option>
                     <option value="XL">Extra Large</option>
                 </select>
-                {/*{errorState.name ? <ErrorMessage>{errorState.name}</ErrorMessage> : null}*/}
+                {errorState.size ? <ErrorMessage>{errorState.size}</ErrorMessage> : null}
             </label>
             <br />
             <h3>Toppings</h3>
@@ -143,7 +143,7 @@ const PizzaForm = () => {
                     <option value="Red">Red</option>
                     <option value="White">White</option>
                 </select>
-                {/*{errorState.name ? <ErrorMessage>{errorState.name}</ErrorMessage> : null}*/}
+                {errorState.sauce ? <ErrorMessage>{errorState.sauce}</ErrorMessage> : null}
             </label>
             <br />
             <label htmlFor="pepperoni">
