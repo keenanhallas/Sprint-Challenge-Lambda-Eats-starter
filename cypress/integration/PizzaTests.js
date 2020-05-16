@@ -10,4 +10,11 @@ describe("Testing the pizza ordering form", () => {
             .type("eenan Hallas")
             .should("have.value", "Keenan Hallas")
     })
+
+    it("Tests topping check boxes", () => {
+        cy.get('#pepperoni').check().should("have.checked", "true")
+            .get('#sausage').check().should("have.checked", "true")
+            .get('#mushroom').check().should("have.checked", "true")
+            .get('#pineapple').check().should("have.checked", "true")
+    })
 })
