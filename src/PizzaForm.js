@@ -12,8 +12,15 @@ const PizzaForm = () => {
         instructions: ""
     });
 
-    const handleChange = () => {
-        console.log("Change logged!");
+    const handleChange = (event) => {
+        event.persist();
+        const value = event.target.type === "checkbox" ? event.target.checked : event.target.value;
+        setFormState({
+            ...formState,
+            [event.target.name]: value
+        });
+        console.log(formState);
+        //validate(event, value);
     }
 
     const handleSubmit = () => {
@@ -22,7 +29,7 @@ const PizzaForm = () => {
 
     return (
         <form onSubmit={handleSubmit}>
-            <h2>Please enter your info</h2>
+            <h3>First things first</h3>
             <label htmlFor="name">
                 Name:
                 <input
@@ -52,6 +59,7 @@ const PizzaForm = () => {
                 {/*{errorState.name ? <ErrorMessage>{errorState.name}</ErrorMessage> : null}*/}
             </label>
             <br />
+            <h3>Toppings</h3>
             <label htmlFor="sauce">
                 Sauce:
                 <select
@@ -114,6 +122,17 @@ const PizzaForm = () => {
                     /> 
             </label>
             {/*{errorState.name ? <ErrorMessage>{errorState.name}</ErrorMessage> : null}*/}
+            <br />
+            <h3>Special instructions</h3>
+            <label htmlFor="instructions">
+                <textarea
+                    id="instructions"
+                    name="instructions"
+                    value={formState.instructions}
+                    onChange={handleChange}
+                />
+                {/*{errorState.name ? <ErrorMessage>{errorState.name}</ErrorMessage> : null}*/}
+            </label>
             <br />
             <button>Order now!</button>
         </form>

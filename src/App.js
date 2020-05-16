@@ -9,7 +9,6 @@ const App = () => {
       <header>
         <nav>
           <Link to="/">Home</Link>
-          <Link to="/pizza">Get a pizza!</Link>
         </nav>
         <h1>Keenan's Terrible Pizza Service</h1>
         <h2>Wow, it actually works??</h2>
