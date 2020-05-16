@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import * as yup from "yup";
 import styled from "styled-components";
+import axios from 'axios';
 
 const PizzaForm = () => {
     const [formState, setFormState] = useState({
@@ -14,8 +15,17 @@ const PizzaForm = () => {
         instructions: ""
     });
 
+    const [orders, setOrders] = useState([]);
+
     const formSchema = yup.object().shape({
-        name: yup.string().min(2, "Your name must be at least 2 characters.").required("You must enter your name.")
+        name: yup.string().min(2, "Your name must be at least 2 characters.").required("You must enter your name."),
+        size: yup.string(),
+        sauce: yup.string(),
+        pepperoni: yup.boolean(),
+        sausage: yup.boolean(),
+        mushroom: yup.boolean(),
+        pineapple: yup.boolean(),
+        instructions: yup.string()
     });
 
     const [errorState, setErrorState] = useState({
@@ -50,9 +60,37 @@ const PizzaForm = () => {
             });
     }
 
-    const handleSubmit = () => {
-        console.log("Submission logged!");
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        axios.post("https://reqres.in/api/users", formState)
+            .then(response => {
+                console.log(response.data);
+                setOrders([...orders, {
+                    name: response.data.name,
+                    size: response.data.size,
+                    sauce: response.data.sauce,
+                    instructions: response.data.instructions
+                }]);
+            })
+            .catch(err => {
+                console.log(err);
+            })
+        setFormState({
+            name: "",
+            size: "",
+            sauce: "",
+            pepperoni: false,
+            sausage: false,
+            mushroom: false,
+            pineapple: false,
+            instructions: ""
+        });
+        //console.log();
     }
+
+    useEffect(() => {
+        console.log(orders);
+    }, [orders]);
 
     const ErrorMessage = styled.span`
         color: red;
