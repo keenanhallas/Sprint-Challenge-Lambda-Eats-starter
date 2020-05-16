@@ -62,7 +62,7 @@ const PizzaForm = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        axios.post("https://reqres.in/api/users", formState)
+        axios.post("https://reqres.in/api/orders", formState)
             .then(response => {
                 console.log(response.data);
                 setOrders([...orders, {
